@@ -16,4 +16,19 @@ class HomepageControllerTest extends PantherTestCase
 
         $this->assertCount(2, $crawler->filter('ul.categories li'));
     }
+
+    public function testItsPossibleToAccessAProductPageWhenClickingACategory()
+    {
+        $client = static::createClient();
+        $crawler = $client->request('GET', '/');
+
+        $categoryLink = $crawler->selectLink('categ1')->link();
+        $client->click($categoryLink);
+
+        $this->assertResponseIsSuccessful();
+        $this->assertStringEndsWith(
+            '/category/categ1',
+            $client->getRequest()->getPathInfo()
+        );
+    }
 }
