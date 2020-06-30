@@ -23,4 +23,13 @@ class ProductControllerTest extends PantherTestCase
         $this->assertSelectorTextNotContains('div#products', 'Produit1');
         $this->assertSelectorTextNotContains('div#products', 'Produit2');
     }
+
+    public function testItShowsA404WhenCategoryDoesNotExists()
+    {
+        $client = static::createClient();
+        $client->request('GET', '/category/toto');
+
+        $this->assertFalse($client->getResponse()->isSuccessful());
+    }
+
 }
