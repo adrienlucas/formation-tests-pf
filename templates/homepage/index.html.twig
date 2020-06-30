@@ -12,8 +12,21 @@
                 <a href="{{ path('products_by_category', {'name': category.name}) }}">
                     {{ category.name }}
                 </a>
+                <a href="#" onclick="show_preview({{ category.id }});">Preview</a>
             </li>
         {% endfor %}
     </ul>
 </div>
+<div id="preview">
+</div>
+
+<script>
+  function show_preview(categoryId)
+  {
+    $('#preview').html('');
+    $.get('{{ path('category_preview', {'id': 99999}) }}'.replace(99999, categoryId), function(result){
+        $('#preview').html('<p>'+result.content+'</p>');
+    });
+  }
+</script>
 {% endblock %}

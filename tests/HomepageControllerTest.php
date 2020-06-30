@@ -31,4 +31,22 @@ class HomepageControllerTest extends PantherTestCase
             $client->getRequest()->getPathInfo()
         );
     }
+
+    public function testItShowsThePreviewOfACategory()
+    {
+        $client = static::createPantherClient();
+        $crawler = $client->request('GET', '/');
+
+        $this->assertEmpty($crawler->filter('#preview')->text());
+
+        $previewButton = $crawler->filter('ul.categories li a:last-child')->link();
+        $client->click($previewButton);
+
+        $client->waitFor('#preview p');
+
+        $this->assertStringContainsString(
+            'Produit1',
+            $crawler->filter('#preview')->text()
+        );
+    }
 }

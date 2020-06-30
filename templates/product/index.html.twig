@@ -5,7 +5,9 @@
 {% block body %}
 <div id="products">
     {% for product in products %}
-        <p>{{ product.name }} ({{ product.price / 100 }} €)</p>
+        <p>
+                {{ product.name }} ({{ product.price / 100 }} €)
+        </p>
     {% endfor %}
 </div>
 {% endblock %}
