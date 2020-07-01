@@ -22,6 +22,8 @@ Scénario:
 
 Découpage technique :
     - ajout de la prop description dans Product
+    - recréer le schema de BDD (bin/console doctrine:schema:update)
+    - dans les fixtures, rajouter la description
     - ajout d'une action pour afficher un détail produit (sur l'url "/produit/{id}")
     - ajout de la vue détail produit
     - dans la vue, tronquer la description si >100

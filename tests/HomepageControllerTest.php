@@ -48,5 +48,7 @@ class HomepageControllerTest extends PantherTestCase
             'Produit1',
             $crawler->filter('#preview')->text()
         );
+
+//        $this->assertSame(103, strlen($client->filter(...)->text()));
     }
 }
